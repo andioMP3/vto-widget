@@ -395,21 +395,20 @@ function selectGalleryImage(url){
 }
 
 function productToB64(){
-  // Aktives Galerie-Thumbnail direkt verwenden (CORS-safe, kein URL-Vergleich nötig)
-  var activeThumb = document.querySelector(".vtro-gallery-item.active img");
-  if(activeThumb && activeThumb.complete && activeThumb.naturalWidth > 0){
-    console.log('[VTO] Produktbild: Galerie-Thumbnail', activeThumb.src.slice(-40));
-    return imgElementToB64(activeThumb);
-  }
-  // Fallback: Hauptbild auf der Seite
+  // Priorität 1: URL fetch vom ausgewählten Bild (volle Auflösung, zuverlässig)
+  var url = S.selectedImageUrl || CFG.productImageUrl;
+  if(url) return urlToB64(url);
+  // Priorität 2: Hauptbild auf der Seite via Canvas
   var mainImg = document.getElementById("main-product-img");
   if(mainImg && mainImg.complete && mainImg.naturalWidth > 0){
-    console.log('[VTO] Produktbild: main-product-img', mainImg.src.slice(-40));
     return imgElementToB64(mainImg);
   }
-  // Letzter Fallback: URL fetch
-  var url = S.selectedImageUrl || CFG.productImageUrl;
-  return url ? urlToB64(url) : Promise.resolve(null);
+  // Priorität 3: Galerie-Thumbnail (klein, letzter Ausweg)
+  var activeThumb = document.querySelector(".vtro-gallery-item.active img");
+  if(activeThumb && activeThumb.complete && activeThumb.naturalWidth > 0){
+    return imgElementToB64(activeThumb);
+  }
+  return Promise.resolve(null);
 }
 function urlToB64(url){
   return fetch(url,{mode:'cors'}).then(function(r){return r.blob();}).then(function(blob){
