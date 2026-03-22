@@ -82,7 +82,7 @@ var CFG={
   // Keys für localStorage (shop-spezifisch damit mehrere Shops sich nicht überschreiben)
   get savedKey(){ return 'vtro_saved_' + this.shopId; },
   get outfitKey(){ return 'vtro_outfit_' + this.shopId; },
-  agbText:'Ich stimme zu, dass mein Foto für das virtuelle Anprobieren verarbeitet wird. Es wird ausschließlich lokal gespeichert und nicht an Dritte weitergegeben. <a href="/agb" target="_blank">AGB lesen</a>',
+  agbText:'Ich stimme zu, dass mein Foto zur Erstellung der virtuellen Anprobe verarbeitet wird. Das Foto wird ausschließlich für diesen Zweck verwendet, nach der Generierung sofort vom Server gelöscht und nicht an Dritte weitergegeben.',
   onGenerate: null,
   onSave:     null,
   onDownload: null,
