@@ -143,8 +143,8 @@ var CSS=[
   "@keyframes vtro-spin{to{transform:rotate(360deg)}}",
   "@keyframes vtro-pulse{0%,100%{opacity:1}50%{opacity:.4}}",
   "@keyframes vtro-progress{0%{width:5%}100%{width:95%}}",
-  ".vtro-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:10px;padding:13px 20px;background:"+D+";border:2px solid "+D+";color:white;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:background .22s,border-color .22s;position:relative;-webkit-tap-highlight-color:transparent;}",
-  ".vtro-btn:hover{background:"+A+";border-color:"+A+";}",
+  ".vtro-btn{display:flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;background:"+D+";border:2px solid "+D+";color:white;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-radius:50px;transition:background .22s,border-color .22s,transform .18s,box-shadow .18s;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999980;box-shadow:0 4px 20px rgba(0,0,0,.35);white-space:nowrap;-webkit-tap-highlight-color:transparent;}",
+  ".vtro-btn:hover{background:"+A+";border-color:"+A+";transform:translateX(-50%) translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.4);}",
   ".vtro-saved-dot{position:absolute;top:-7px;right:-7px;width:20px;height:20px;background:#2e7d32;border-radius:50%;display:none;align-items:center;justify-content:center;border:2px solid white;font-size:10px;}",
   ".vtro-btn.vtro-has-saved .vtro-saved-dot{display:flex;animation:vtro-pop .4s cubic-bezier(.34,1.56,.64,1);}",
   ".vtro-overlay{position:fixed;inset:0;background:rgba(20,10,5,.72);z-index:999990;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .28s ease;}",
@@ -595,8 +595,7 @@ function init(){
     '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'+
     L('btnTrigger')+'<span class="vtro-saved-dot">✓</span>';
   if(S.saved.length>0)btn.classList.add('vtro-has-saved');
-  var anchor=document.querySelector('#add-to-cart-section,.product-form,form[action*="cart"],.product__form,.buy-widget');
-  if(anchor)anchor.appendChild(btn);else document.body.appendChild(btn);
+  document.body.appendChild(btn);
   var overlay=buildModal();
   btn.addEventListener('click',openModal);
   document.getElementById('vtro-close').addEventListener('click',closeModal);
